@@ -110,6 +110,8 @@
 
 ## ⚡ ROM ve DAC ile Fonksiyon Jeneratörü
 
+<img width="1045" height="329" alt="resim" src="https://github.com/user-attachments/assets/111ad65e-7144-4d9b-a09b-27fe04dfd8d5" />
+
 > [!TIP]
 > ### 1. Adresleme Birimi (8-bit Counter)
 > * **Görevi:** Sistemin "zamanlayıcısıdır". Her saat darbesiyle (CLK) sayıyı 1 artırır (00→01→02⋯→FF).
