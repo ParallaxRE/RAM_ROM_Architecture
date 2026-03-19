@@ -108,3 +108,15 @@ Temel bir ROM mimarisi, donanım seviyesinde **4 ana parçadan** oluşur. Örnek
  **RC Filtre (En sağdaki Direnç ve Kondansatör):** DAC çıkışı aslında merdiven basamağı gibidir (keskin köşelidir). Bu filtre, o köşeleri "yumuşatır" ve pürüzsüz bir analog dalga (Sinüs) elde edilmesini sağlar.
 
 </div>
+
+> [!NOTE]
+> Mavi renkli bir bilgi kutusu oluşturur. 
+
+> [!TIP]
+> Yeşil renkli bir ipucu kutusu oluşturur. 
+
+> [!IMPORTANT]
+> Mor renkli önemli bir kutu oluşturur.
+
+> [!WARNING]
+> Turuncu renkli bir uyarı kutusu oluşturur. 
