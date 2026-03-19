@@ -1,3 +1,4 @@
+
 <div align="center">
 
 # 💾 ROM – Sadece Okunabilir Bellek
@@ -10,6 +11,8 @@
 </div>
 
 ---
+
+<img width="653" height="660" alt="resim" src="https://github.com/user-attachments/assets/ae6ba87d-2370-4008-a096-1a61276cc80a" />
 
 > [!NOTE]
 > ## 🏗️ ROM Mimarisi (ROM Architecture)
