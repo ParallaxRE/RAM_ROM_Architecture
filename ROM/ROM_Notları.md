@@ -1,7 +1,7 @@
 <div align="center">
 
 
-<font color="#FF5733"> # ROM – Sadece Okunabilir Bellek </font>
+# <font color="#FF5733"> ROM – Sadece Okunabilir Bellek </font>
 
  **Tasarım Amacı:** Kalıcı verileri tutmak için tasarlanmıştır; veriler sık sık değiştirilmez.
  **Veri Girişi:** Veriler üretim süreci sırasında girilebilir.
