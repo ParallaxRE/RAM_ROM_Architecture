@@ -96,6 +96,8 @@
 > * **İki Farklı Silme Modu:** Bulk Erase (Toplu Silme) ve Sector Erase (Sektör Silme).
 > * **Yazma Süresi:** Yaklaşık 10 mikrosaniye (10 usec) gibi çok kısa bir sürede tamamlar.
 
+<img width="1118" height="663" alt="resim" src="https://github.com/user-attachments/assets/c9a74e4e-97fb-4182-8553-1fc39832ccbd" />
+
 ---
 
 > [!NOTE]
