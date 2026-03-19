@@ -63,6 +63,9 @@
 > * **OTP (One Time Programmable):** Bir sigorta yandığında artık geri dönüşü yoktur.
 > * **Silinemez:** Bir kez programlandığında içindeki veriler asla silinemez veya üzerine yazılamaz.
 
+<img width="509" height="465" alt="resim" src="https://github.com/user-attachments/assets/817d0c5c-96e3-44fb-882e-8481d09d665a" />
+
+
 > [!WARNING]
 > ### EPROM (Silinebilir Programlanabilir ROM) Özellikleri
 > * **Özel Voltaj:** Programlamak için normal çalışma voltajından daha yüksek (Genellikle 10-25V arası) voltaja ihtiyaç duyulur.
