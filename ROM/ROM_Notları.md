@@ -1,3 +1,4 @@
+<div align="center">
 # ROM – Sadece Okunabilir Bellek
 
 * **Tasarım Amacı:** Kalıcı verileri tutmak için tasarlanmıştır; veriler sık sık değiştirilmez.
