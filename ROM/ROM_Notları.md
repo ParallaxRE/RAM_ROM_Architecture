@@ -1,4 +1,4 @@
-<div align="center">
+
 # ROM – Sadece Okunabilir Bellek
 
 * **Tasarım Amacı:** Kalıcı verileri tutmak için tasarlanmıştır; veriler sık sık değiştirilmez.
@@ -105,3 +105,4 @@ Temel bir ROM mimarisi, donanım seviyesinde **4 ana parçadan** oluşur. Örnek
 ### 3. Dönüştürme Birimi (8-bit DAC ve Filtre)
 * **DAC (Digital-to-Analog Converter):** ROM'dan gelen dijital sayıları (biner kod) orantılı bir voltaj seviyesine dönüştürür.
 * **RC Filtre (En sağdaki Direnç ve Kondansatör):** DAC çıkışı aslında merdiven basamağı gibidir (keskin köşelidir). Bu filtre, o köşeleri "yumuşatır" ve pürüzsüz bir analog dalga (Sinüs) elde edilmesini sağlar.
+<div align="center">
