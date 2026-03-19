@@ -56,6 +56,9 @@
 > * **Yeniden Programlanamaz:** Veri sonradan değiştirilemez veya silinemez.
 > * **Kullanım Alanı Örneği:** Eski tip monitörlerde (CRT) karakter üreticisi olarak.
 
+<img width="1223" height="894" alt="resim" src="https://github.com/user-attachments/assets/37af7cfa-ad02-4de0-a1c7-f7029a7f1ccd" />
+
+---
 > [!WARNING]
 > ### PROM (Programmable ROM) Özellikleri
 > * **Fusible-link MROM (Sigortalı Bağlantı):** İçinde "sigorta" (fuse) adı verilen binlerce küçük iletken köprü vardır.
@@ -65,7 +68,7 @@
 
 <img width="509" height="465" alt="resim" src="https://github.com/user-attachments/assets/817d0c5c-96e3-44fb-882e-8481d09d665a" />
 
-
+---
 > [!WARNING]
 > ### EPROM (Silinebilir Programlanabilir ROM) Özellikleri
 > * **Özel Voltaj:** Programlamak için normal çalışma voltajından daha yüksek (Genellikle 10-25V arası) voltaja ihtiyaç duyulur.
@@ -73,6 +76,9 @@
 > * **Silinebilirlik:** İçindeki veriler **Ultraviyole (UV) ışık** kullanılarak silinebilir. (Üzerinde şeffaf bir kuvars pencere bulunur).
 > * **Örnekler:** 2732 (4K x 8) ve 2764 (8K x 8) versiyonları.
 
+<img width="1177" height="594" alt="resim" src="https://github.com/user-attachments/assets/2bf23c08-bab0-44f4-ade6-59a307d5431b" />
+
+---
 > [!TIP]
 > ### EEPROM (Elektriksel Olarak Silinebilir Programlanabilir ROM)
 > * **Elektriksel Silme:** Veriler elektriksel sinyallerle silinebilir. Yüksek voltaj çipin kendi içindeki devreler sayesinde üretilir.
@@ -80,6 +86,9 @@
 > * **Otomatik Silme:** Devreler yazılacak olan hücreyi otomatik olarak siler (üzerine yazma işlemi).
 > * **Tarihsel Örnekler:** Intel 2816 ve 2864.
 
+<img width="600" height="321" alt="resim" src="https://github.com/user-attachments/assets/f73c2236-7e26-4e89-af76-42f06b5b183c" />
+
+---
 > [!TIP]
 > ### Flash Memory (Flash Hafıza) Özellikleri
 > * **Daha Yüksek Yoğunluk:** EEPROM'a göre daha küçük alanda çok daha fazla veri (GB’larca) saklayabilir.
