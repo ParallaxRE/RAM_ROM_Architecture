@@ -118,4 +118,81 @@ Normalde bellekteki bir veriye ulaşmak için bir adres göndermen gerekir. Bell
 > [!TIP]
 > ### (B) Şeması: Multiplexing Var (DRAM)
 > İşte burası senin "Address Multiplexing" dediğin yerin tam olarak gerçekleştiği nokta. İşlemci ile DRAM arasına bir Multiplexer (MUX) yerleştirilmiş.
-> * **Multiplexer'ın Rol
+> * **Multiplexer'ın Rolü:** İşlemciden çıkan 14 adet kabloyu alır ve bunları sadece 7 adet kabloya indirger.
+> * **MUX Sinyali (Seçici):** Şemanın altındaki nota bakarsan:
+>   * **MUX = 0 olduğunda:** İlk 7 bit (A0-A6) DRAM'e gönderilir.
+>   * **MUX = 1 olduğunda:** Diğer 7 bit (A7-A13) aynı yollar üzerinden gönderilir.
+> * **İlişki:** Bu sayede DRAM yongası üzerinde 14 pin yerine sadece 7 pin (A0/A7 gibi) kullanılmış olur.
+
+---
+
+## 🔄 Refreshing
+
+* **Temel Mantık:** DRAM hücreleri veriyi minik kapasitörlerde elektrik yükü olarak tutar. Bu kapasitörler zamanla elektrik sızdırdığı için verinin silinmemesi adına periyodik olarak şarj edilmeleri gerekir.
+* **Periyot (Zamanlama):** Her bir bellek hücresi tipik olarak her 4 ms (milisaniye) içinde en az bir kez tazelenmelidir, aksi takdirde içerideki veri (0 veya 1 bilgisi) kaybolur.
+* **Okuma İşlemi ile İlişki:** Bellekten bir veri okunduğunda, o satır otomatik olarak tazelenmiş olur. Ancak okunmayan hücrelerin de unutulmaması için özel bir tazeleme döngüsüne ihtiyaç vardır.
+* **Donanım Gereksinimi:** Bu işlem için bellek denetleyicisi (Memory Controller) içinde veya harici bir devrede ROW (Satır) adres sinyalini aktif edecek ek mekanizmalar bulunur.
+
+> [!NOTE]
+> ### 2 Ana Tazeleme Modu
+> * **Burst Mode (Patlama Modu):**
+>   * Sistemin normal işleyişi tamamen durdurulur (suspend).
+>   * Tüm bellek satırları arka arkaya, hızlı bir "patlama" şeklinde tazelenir.
+>   * Bu sırada işlemci belleğe erişemediği için kısa süreli performans kayıpları yaşanabilir.
+> * **Distributed Mode (Dağıtılmış Mod):**
+>   * Tazeleme işlemi, normal bellek operasyonlarının arasına küçük parçalar halinde serpiştirilir (interspersed).
+>   * Sistem tamamen durmaz; tazeleme ve veri işleme sırayla, karma şekilde yapılır.
+>   * Modern sistemlerde akıcılığı bozmadığı için bu mod tercih edilir.
+
+> [!IMPORTANT]
+> ### Tazeleme Sinyal Analizi
+> * **Sinyal Durumu:** Tazeleme işlemi sırasında sadece RAS (Satır Adres Seçici) sinyali aktif edilir.
+> * **Devre Dışı Sinyaller:** CAS (Sütun Adres Seçici) ve R/W (Okuma/Yazma) sinyalleri HIGH (yukarıda/pasif) konumda tutulur.
+> * **Mantıksal Sebep:** Tazeleme sırasında belirli bir sütuna gitmeye veya yeni veri yazmaya gerek yoktur; sadece satırdaki kapasitörleri şarj etmek (uyandırmak) yeterlidir.
+> * **Adresleme Akışı:** Diyagramda görüldüğü gibi, her bir RAS darbesinde adres hattındaki satır numarası sırayla artar (ROW 0, ROW 1, ROW 2 ... ROW 127).
+> * **Enerji Tasarrufu:** Sütun (CAS) devreleri çalıştırılmadığı için bu yöntem "Full Access" (Tam Erişim) moduna göre çok daha az güç tüketir.
+> * **Veri Koruma:** Bu periyodik döngü sayesinde, DRAM içindeki dosyaların kapasitörlerden sızan elektriğe rağmen silinmeden korunur.
+
+---
+
+## 📏 Bellek Genişletme (Memory Expansion)
+
+> [!TIP]
+> ### 1. Word Size Expanding (Bit Genişletme)
+> * **Temel Amaç:** Elimizdeki düşük bit genişliğine sahip RAM modüllerini paralel bağlayarak, işlemcinin ihtiyacı olan daha geniş veri yolunu (Data Bus) oluşturmaktır.
+> * **Modüllerin Yapısı:** Şemada iki adet 16 x 4 bitlik RAM kullanılmış. Bu, her bir RAM'in 16 farklı adrese sahip olduğu ama her adreste sadece 4 bit veri tutabildiği anlamına gelir.
+> * **Paralel Bağlantı:** İki RAM modülü yan yana getirilerek 16 x 8 bitlik tek bir bellek bloğu elde edilmiştir. Yani bellek kapasitesi (adres sayısı) aynı kalmış, ancak verinin "genişliği" 4'ten 8'e çıkmıştır.
+> * **Ortak Adres Yolu (Address Bus):** Adres hatları (AB0 - AB3) her iki RAM modülüne de ortak olarak bağlanmıştır. İşlemci bir adres gönderdiğinde, her iki RAM de aynı anda "uyanır".
+> * **Ayrılmış Veri Yolu (Data Bus):** Veri hatları (DB0 - DB7) ikiye bölünmüştür:
+>   * **RAM-0:** Verinin üst 4 bitini (high-order bits, DB4 - DB7) saklar.
+>   * **RAM-1:** Verinin alt 4 bitini (low-order bits, DB0 - DB3) saklar.
+> * **Kontrol Sinyalleri:** Okuma/Yazma (R/W) ve Chip Select (CS) sinyalleri her iki modüle de aynı anda gider. Böylece işlemci "oku" dediğinde, her iki modül kendi 4 bitini gönderir ve veri hattında toplam 8 bitlik tam bir "word" (kelime) oluşur.
+
+> [!WARNING]
+> ### 2. Capacity Expanding (Kapasite Artırma)
+> * **Temel Amaç:** Elimizdeki RAM modüllerini kullanarak işlemcinin erişebileceği toplam adres alanını (toplam kelime sayısını) büyütmektir.
+> * **Modüllerin Yapısı:** Şemada iki adet 16 x 4 bitlik RAM kullanılmış. Hedef, bunları birleştirerek 32 x 4 bitlik bir bellek yapısı elde etmektir. Dikkat edersen veri genişliği (4 bit) aynı kalıyor, sadece adres sayısı 16'dan 32'ye çıkıyor.
+> * **Ortak Veri Yolu (Data Bus):** Bu sefer veri hatları (DB0 - DB3) her iki RAM modülüne de ortak bağlanmıştır. Çünkü aynı anda sadece bir RAM veri gönderecek veya alacaktır.
+> * **Adres Seçimi (The High+1 Line):** Toplam 32 adrese ulaşmak için 5 adres hattına (2^5=32) ihtiyaç vardır.
+>   * İlk 4 hat (AB0 - AB3) her iki RAM'e de ortak gider.
+>   * 5. hat (AB4 - High+1 line) ise hangi RAM'in o an aktif olacağını seçer.
+> * **Chip Select (CS) ve NOT Kapısı:** Şemadaki en kritik nokta burasıdır. AB4 hattı doğrudan RAM-0'ın CS ucuna, bir NOT kapısı (invertör) üzerinden ise RAM-1'in CS ucuna gider.
+>   * Eğer AB4 = 0 ise: RAM-0 aktif olur, RAM-1 kapalı kalır. (00000 ile 01111 arası adresler).
+>   * Eğer AB4 = 1 ise: RAM-1 aktif olur, RAM-0 kapalı kalır. (10000 ile 11111 arası adresler).
+
+> [!NOTE]
+> ### 3. Combining Chips (Yonga Birleştirme)
+> * **Temel Amaç:** Dört adet 2K x 8 bitlik PROM (Programlanabilir ROM) yongasını birleştirerek toplamda 8K x 8 bitlik tek bir bellek alanı elde etmektir.
+> * **Bellek Yapısı:** Veri genişliği (8-bit) her yongada aynıdır. Biz bu yongaları "arka arkaya" dizerek adres derinliğini (kapasiteyi) artırıyoruz.
+> * **Decoder (Kod Çözücü) Kullanımı:** İkiden fazla yonga olduğunda, sadece bir NOT kapısı yetmez. Burada 74LS138 (3-line-to-8-line decoder) kullanılmış. Bu entegre, gelen adres sinyallerine göre hangi yonganın aktif olacağını seçer.
+> * **Adres Paylaşımı:**
+>   * Toplam 8K adrese ulaşmak için 13 adres hattına (2^13=8192) ihtiyaç vardır.
+>   * İlk 11 hat (AB0 - AB10), her dört PROM yongasına da ortak gider. Bu hatlar yonganın içindeki spesifik adresi seçer.
+>   * En üstteki 2 hat (AB11 ve AB12), Decoder'ın girişine gider. Bu hatlar "Hangi yonga çalışacak?" kararını verir.
+> * **Yonga Seçimi (Chip Select):** Decoder'ın çıkışları (0,1,2,3), her bir PROM yongasının CS (Chip Select) ucuna bağlıdır.
+>   * Eğer AB11 AB12 = 00 ise PROM-0 aktif olur.
+>   * Eğer AB11 AB12 = 01 ise PROM-1 aktif olur ve bu böyle devam eder.
+> * **Ortak Veri Yolu (Data Bus):** Tüm yongaların veri çıkışları (O0 - O7), ortak 8-bitlik veri yoluna (DB0 - DB7) bağlıdır. Decoder sayesinde aynı anda sadece bir yonga veri gönderdiği için hatlar çakışmaz.
+> * **Hexadecimal Adres Aralıkları:** Şemanın altında gördüğün gibi; her yonga 0800 (hex) birimlik bir yer kaplar.
+>   * PROM-0: 0000 - 07FF arası.
+>   * PROM-3: 1800 - 1FFF arası (toplam 8K kapasiteye ulaşılır).
