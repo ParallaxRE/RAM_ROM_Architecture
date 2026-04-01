@@ -9,7 +9,7 @@
 
 ---
 
->[!NOTE]
+[!NOTE]
 >⚙️ Teknolojisine Göre 2 Tür
 >Static RAM (SRAM): Yarı iletken tabanlıdır. Çok hızlıdır ama pahalıdır. Genellikle işlemci içindeki "Cache" (Önbellek) olarak kullanılır.
 >Dynamic RAM (DRAM): Kondansatör (Capacitor) tabanlıdır. Daha yavaştır ama ucuzdur ve yüksek kapasitelerde (8GB, 16GB RAM'ler gibi) üretilebilir.
@@ -18,7 +18,7 @@
 ---
 
 ## 🛠️ RAM OPERASYON ADIMLARI
->[!TIP]
+[!TIP]
 ### 📥 Ortak Adımlar (Başlangıç)
 >Hangi işlemi yaparsan yap, önce şu iki adımı tamamlaman gerekir:
 >**Adres Kodunu Ayarla (Set Address):** İşlemci, hangi hücreye ulaşmak istediğini "Adres Yolu"na (Address Bus) yazar.
