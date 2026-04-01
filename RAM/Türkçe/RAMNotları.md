@@ -9,7 +9,7 @@
 
 ---
 
-[!NOTE]
+> [!NOTE]
 >⚙️ Teknolojisine Göre 2 Tür
 >Static RAM (SRAM): Yarı iletken tabanlıdır. Çok hızlıdır ama pahalıdır. Genellikle işlemci içindeki "Cache" (Önbellek) olarak kullanılır.
 >Dynamic RAM (DRAM): Kondansatör (Capacitor) tabanlıdır. Daha yavaştır ama ucuzdur ve yüksek kapasitelerde (8GB, 16GB RAM'ler gibi) üretilebilir.
@@ -18,7 +18,7 @@
 ---
 
 ## 🛠️ RAM OPERASYON ADIMLARI
-[!TIP]
+> [!TIP]
 ### 📥 Ortak Adımlar (Başlangıç)
 >Hangi işlemi yaparsan yap, önce şu iki adımı tamamlaman gerekir:
 >**Adres Kodunu Ayarla (Set Address):** İşlemci, hangi hücreye ulaşmak istediğini "Adres Yolu"na (Address Bus) yazar.
@@ -26,43 +26,37 @@
 
 ---
 
->[!WARNING]
+> [!WARNING]
 ### ✍️ Yazma Döngüsü (Write Cycle) Adımları
->Adres Kurulumu: İşlemci, veriyi nereye yazacağını belirlemek için adres yoluna (Address inputs) bilgiyi gönderir. Diyagramda görülen tAS (Address Setup Time), adresin RAM tarafından algılanması için gereken minimum süredir.
+>**Adres Kurulumu:** İşlemci, veriyi nereye yazacağını belirlemek için adres yoluna (Address inputs) bilgiyi gönderir. Diyagramda görülen tAS (Address Setup Time), adresin RAM tarafından algılanması için gereken minimum süredir.
 >**Yazma Sinyali (W/R):** Yazma moduna geçmek için sinyal düşük seviyeye çekilir. Bu, RAM'e "kapıları aç, veri geliyor" komutudur.
+>**Data Setup (tDS):** En önemli kısımdır. Verinin, yazma sinyali sonlanmadan önce veri yolunda hazır ve kararlı hale gelmesi gerekir. Eğer veri bu süreden daha kısa sürede yola çıkarsa, hücreye yanlış veya bozuk bilgi yazılır.
+>**Data Hold (tDH):** Yazma sinyali kesildikten (yüksek seviyeye çıktıktan) sonra verinin hat üzerinde ne kadar daha tutulması gerektiğini ifade eder. Bir nevi "kuruma süresi" gibi düşünebilirsin; sinyal biter bitmez veriyi hattan çekersen hücre içeriği tam dolmadan işlem yarım kalabilir.
 
-        Data Setup (tDS): En önemli kısımdır. Verinin, yazma sinyali sonlanmadan önce veri yolunda hazır ve kararlı hale gelmesi gerekir. Eğer veri bu süreden daha kısa sürede yola çıkarsa, hücreye yanlış veya bozuk bilgi yazılır.
+---
 
-        Data Hold (tDH): Yazma sinyali kesildikten (yüksek seviyeye çıktıktan) sonra verinin hat üzerinde ne kadar daha tutulması gerektiğini ifade eder. Bir nevi "kuruma süresi" gibi düşünebilirsin; sinyal biter bitmez veriyi hattan çekersen hücre içeriği tam dolmadan işlem yarım kalabilir.
+> [!TIP]
+### 📖 Okuma Döngüsü (Read Cycle) Süreci
+>Adres Geçerliliği (Address Valid): İşlemci, okumak istediği hücrenin adresini adres yoluna bırakır. Diyagramın en üstünde gördüğün tRC (Read Cycle Time), tüm bu okuma işleminin toplam süresidir.
+>**Okuma Komutu (R/W):** Okuma yapılacağı için bu sinyal genellikle yüksek (1) seviyede tutulur.
+>**Chip Select (CS) Aktivasyonu:** RAM birimine "seninle konuşuyorum" sinyali gönderilir (0'a çekilir). Bu andan itibaren zaman sayacı işlemeye başlar.
+>**Adres Erişim Süresi (tACC):** Bu, okuma döngüsünün en kritik gecikmesidir. Adres verildikten sonra RAM'in içindeki dekoderlerin doğru hücreyi bulup, oradaki veriyi çıkış kapısına (Data Output) iletmesi için gereken süredir.
+>**Data Valid (Veri Kararlı):** tACC süresi dolduğunda, veri çıkış hattındaki o belirsiz (High-Z) durum sona erer ve "Data valid" kutusu oluşur. Artık işlemci bu veriyi güvenle alıp kendi register'larına kopyalayabilir.
 
-    [!TIP]
-    📖 Okuma Döngüsü (Read Cycle) Süreci
+---
 
-        Adres Geçerliliği (Address Valid): İşlemci, okumak istediği hücrenin adresini adres yoluna bırakır. Diyagramın en üstünde gördüğün tRC (Read Cycle Time), tüm bu okuma işleminin toplam süresidir.
-
-        Okuma Komutu (R/W): Okuma yapılacağı için bu sinyal genellikle yüksek (1) seviyede tutulur.
-
-        Chip Select (CS) Aktivasyonu: RAM birimine "seninle konuşuyorum" sinyali gönderilir (0'a çekilir). Bu andan itibaren zaman sayacı işlemeye başlar.
-
-        Adres Erişim Süresi (tACC): Bu, okuma döngüsünün en kritik gecikmesidir. Adres verildikten sonra RAM'in içindeki dekoderlerin doğru hücreyi bulup, oradaki veriyi çıkış kapısına (Data Output) iletmesi için gereken süredir.
-
-        Data Valid (Veri Kararlı): tACC süresi dolduğunda, veri çıkış hattındaki o belirsiz (High-Z) durum sona erer ve "Data valid" kutusu oluşur. Artık işlemci bu veriyi güvenle alıp kendi register'larına kopyalayabilir.
-
-🏗️ DRAM Mimari Özeti
+## 🏗️ DRAM Mimari Özeti
 
 Görseldeki yapı, 16K x 1 bitlik bir DRAM'i temsil ediyor. Yani toplamda 16.384 adet hücre var ve her hücre sadece 1 bit saklayabiliyor.
 
-    [!NOTE]
-    1. Satır ve Sütun Düzeni (128x128 Matris)
+> [!NOTE]
+> ### 1. Satır ve Sütun Düzeni (128x128 Matris)
+>Tüm bellek hücreleri tek bir uzun sıra yerine, 128 satır ve 128 sütun şeklinde bir kare ızgaraya yerleştirilmiştir.
+>**Neden?** Eğer 16.384 hücreyi yan yana dizseydin, her birine ulaşmak için binlerce kablo (pin) gerekecekti. Matris yapısı sayesinde sadece 128+128 hatla tüm hücrelere erişilebiliyor.
 
-    Tüm bellek hücreleri tek bir uzun sıra yerine, 128 satır ve 128 sütun şeklinde bir kare ızgaraya yerleştirilmiştir.
-
-        Neden? Eğer 16.384 hücreyi yan yana dizseydin, her birine ulaşmak için binlerce kablo (pin) gerekecekti. Matris yapısı sayesinde sadece 128+128 hatla tüm hücrelere erişilebiliyor.
-
-    [!NOTE]
-    2. Adres Kod Çözücüler (Decoders)
-
-    Görselin solunda ve üstünde gördüğün bloklar bellek biriminin "navigasyon" sistemidir:
+> [!NOTE]
+> ### 2. Adres Kod Çözücüler (Decoders)
+Görselin solunda ve üstünde gördüğün bloklar bellek biriminin "navigasyon" sistemidir:
 
         Row Address Inputs (A0 - A6): 7 bitlik bu adres, "1-of-128 decoder" aracılığıyla 128 satırdan hangisinin aktif edileceğini seçer.
 
