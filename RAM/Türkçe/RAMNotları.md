@@ -1,37 +1,35 @@
 <div align="center">
-💾 RAM – Random Access Memory (Rastgele Erişimli Bellek)
+    
+# 💾 RAM – Random Access Memory (Rastgele Erişimli Bellek)
 
-Okunabilir ve Yazılabilir (Read/Writeable): ROM'un aksine, RAM'in içindeki veriler her an değiştirilebilir, silinebilir veya üzerine yeni veri yazılabilir.
-Uçucu (Volatile): Elektrik kesildiği anda içindeki tüm veriler silinir. Bu yüzden kalıcı depolama değil, geçici depolama (temporary storage) veya register olarak kullanılır.
+**Okunabilir ve Yazılabilir (Read/Writeable):** ROM'un aksine, RAM'in içindeki veriler her an değiştirilebilir, silinebilir veya üzerine yeni veri yazılabilir.
+**Uçucu (Volatile):** Elektrik kesildiği anda içindeki tüm veriler silinir. Bu yüzden kalıcı depolama değil, geçici depolama (temporary storage) veya register olarak kullanılır.
 
 </div>
 
-    [!NOTE]
-    ⚙️ Teknolojisine Göre 2 Tür
+---
 
-        Static RAM (SRAM): Yarı iletken tabanlıdır. Çok hızlıdır ama pahalıdır. Genellikle işlemci içindeki "Cache" (Önbellek) olarak kullanılır.
+>[!NOTE]
+>⚙️ Teknolojisine Göre 2 Tür
+>Static RAM (SRAM): Yarı iletken tabanlıdır. Çok hızlıdır ama pahalıdır. Genellikle işlemci içindeki "Cache" (Önbellek) olarak kullanılır.
+>Dynamic RAM (DRAM): Kondansatör (Capacitor) tabanlıdır. Daha yavaştır ama ucuzdur ve yüksek kapasitelerde (8GB, 16GB RAM'ler gibi) üretilebilir.
+>Boyut Adımları: Kapasiteleri byte bazından başlar ve 1K, 2K, 4K gibi 2n katları şeklinde artarak ilerler.
 
-        Dynamic RAM (DRAM): Kondansatör (Capacitor) tabanlıdır. Daha yavaştır ama ucuzdur ve yüksek kapasitelerde (8GB, 16GB RAM'ler gibi) üretilebilir.
+---
 
-        Boyut Adımları: Kapasiteleri byte bazından başlar ve 1K, 2K, 4K gibi 2n katları şeklinde artarak ilerler.
+## 🛠️ RAM OPERASYON ADIMLARI
+>[!TIP]
+### 📥 Ortak Adımlar (Başlangıç)
+>Hangi işlemi yaparsan yap, önce şu iki adımı tamamlaman gerekir:
+>**Adres Kodunu Ayarla (Set Address):** İşlemci, hangi hücreye ulaşmak istediğini "Adres Yolu"na (Address Bus) yazar.
+>**Çipi Aktifleştir (/CS):** "Chip Select" sinyali gönderilerek ilgili RAM çipi uyandırılır.
 
-🛠️ RAM OPERASYON ADIMLARI
+---
 
-    [!TIP]
-    📥 Ortak Adımlar (Başlangıç)
-
-    Hangi işlemi yaparsan yap, önce şu iki adımı tamamlaman gerekir:
-
-        Adres Kodunu Ayarla (Set Address): İşlemci, hangi hücreye ulaşmak istediğini "Adres Yolu"na (Address Bus) yazar.
-
-        Çipi Aktifleştir (/CS): "Chip Select" sinyali gönderilerek ilgili RAM çipi uyandırılır.
-
-    [!WARNING]
-    ✍️ Yazma Döngüsü (Write Cycle) Adımları
-
-        Adres Kurulumu: İşlemci, veriyi nereye yazacağını belirlemek için adres yoluna (Address inputs) bilgiyi gönderir. Diyagramda görülen tAS (Address Setup Time), adresin RAM tarafından algılanması için gereken minimum süredir.
-
-        Yazma Sinyali (W/R): Yazma moduna geçmek için sinyal düşük seviyeye çekilir. Bu, RAM'e "kapıları aç, veri geliyor" komutudur.
+>[!WARNING]
+### ✍️ Yazma Döngüsü (Write Cycle) Adımları
+>Adres Kurulumu: İşlemci, veriyi nereye yazacağını belirlemek için adres yoluna (Address inputs) bilgiyi gönderir. Diyagramda görülen tAS (Address Setup Time), adresin RAM tarafından algılanması için gereken minimum süredir.
+>**Yazma Sinyali (W/R):** Yazma moduna geçmek için sinyal düşük seviyeye çekilir. Bu, RAM'e "kapıları aç, veri geliyor" komutudur.
 
         Data Setup (tDS): En önemli kısımdır. Verinin, yazma sinyali sonlanmadan önce veri yolunda hazır ve kararlı hale gelmesi gerekir. Eğer veri bu süreden daha kısa sürede yola çıkarsa, hücreye yanlış veya bozuk bilgi yazılır.
 
