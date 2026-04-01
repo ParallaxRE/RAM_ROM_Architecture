@@ -13,7 +13,7 @@ Uçucu (Volatile): Elektrik kesildiği anda içindeki tüm veriler silinir. Bu y
 
         Dynamic RAM (DRAM): Kondansatör (Capacitor) tabanlıdır. Daha yavaştır ama ucuzdur ve yüksek kapasitelerde (8GB, 16GB RAM'ler gibi) üretilebilir.
 
-        Boyut Adımları: Kapasiteleri byte bazından başlar ve 1K, 2K, 4K gibi 2^n katları şeklinde artarak ilerler.
+        Boyut Adımları: Kapasiteleri byte bazından başlar ve 1K, 2K, 4K gibi 2n katları şeklinde artarak ilerler.
 
 🛠️ RAM OPERASYON ADIMLARI
 
