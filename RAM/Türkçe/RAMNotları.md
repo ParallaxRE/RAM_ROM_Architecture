@@ -26,6 +26,7 @@
 > * **Çipi Aktifleştir (/CS):** "Chip Select" sinyali gönderilerek ilgili RAM çipi uyandırılır.
 
 ---
+<img width="578" height="352" alt="resim" src="https://github.com/user-attachments/assets/2e736f38-dcbd-4bcf-8f56-c2bde2a7776f" />
 
 > [!WARNING]
 > ### ✍️ Yazma Döngüsü (Write Cycle) Adımları
@@ -36,6 +37,8 @@
 
 ---
 
+<img width="556" height="403" alt="resim" src="https://github.com/user-attachments/assets/97bf7121-350e-4b43-9443-d8b7e53db50d" />
+
 > [!TIP]
 > ### 📖 Okuma Döngüsü (Read Cycle) Süreci
 > * **Adres Geçerliliği (Address Valid):** İşlemci, okumak istediği hücrenin adresini adres yoluna bırakır. Diyagramın en üstünde gördüğün tRC (Read Cycle Time), tüm bu okuma işleminin toplam süresidir.
@@ -45,6 +48,7 @@
 > * **Data Valid (Veri Kararlı):** tACC süresi dolduğunda, veri çıkış hattındaki o belirsiz (High-Z) durum sona erer ve "Data valid" kutusu oluşur. Artık işlemci bu veriyi güvenle alıp kendi register'larına kopyalayabilir.
 
 ---
+<img width="762" height="583" alt="resim" src="https://github.com/user-attachments/assets/9871d684-9b11-4ac9-93ed-06c799918055" />
 
 ## 🏗️ DRAM Mimari Özeti
 
@@ -63,6 +67,7 @@ Görseldeki yapı, 16K x 1 bitlik bir DRAM'i temsil ediyor. Yani toplamda 16.384
 > * **Toplam Adres:** 7 bit (satır) + 7 bit (sütun) = 14 bit. 2^14=16.384 adres noktasına tam olarak denk gelir.
 
 ---
+<img width="924" height="371" alt="resim" src="https://github.com/user-attachments/assets/4cbe8aea-eb36-4a72-addf-ee73b036dec4" />
 
 ### 🧱 1. Görseldeki Bileşenlerin Görevleri
 * **Kondansatör (C):** Hücrenin kalbidir. Veriyi elektrik yükü olarak saklar. Şarjlıysa "1", boşsa "0" demektir.
@@ -91,6 +96,8 @@ Görseldeki yapı, 16K x 1 bitlik bir DRAM'i temsil ediyor. Yani toplamda 16.384
 ## 🔀 Adres Multiplexing
 
 Normalde bellekteki bir veriye ulaşmak için bir adres göndermen gerekir. Bellek kapasitesi arttıkça, bu adresi taşımak için gereken kablo (pin/line) sayısı da artar. Örneğin, çok büyük bir belleğin varsa yüzlerce pin gerekirdi; bu da anakartta yer kaplar ve maliyeti artırır. Multiplexing ise bu işi "sırayla" yaparak pin sayısını yarıya indirir. Adresi tek seferde değil, iki aşamada göndeririz.
+
+<img width="731" height="938" alt="resim" src="https://github.com/user-attachments/assets/8b3125dd-c816-4847-9976-d9857b027bdb" />
 
 > [!NOTE]
 > ### (A) Mimari Şema: Multiplexing Burada Nerede?
