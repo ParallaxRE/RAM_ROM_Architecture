@@ -18,6 +18,7 @@
 ---
 
 ## 🛠️ RAM OPERASYON ADIMLARI
+
 > [!TIP]
 ### 📥 Ortak Adımlar (Başlangıç)
 >Hangi işlemi yaparsan yap, önce şu iki adımı tamamlaman gerekir:
