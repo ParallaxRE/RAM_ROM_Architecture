@@ -115,6 +115,9 @@ Normalde bellekteki bir veriye ulaşmak için bir adres göndermen gerekir. Bell
 > * **RAS (Row Address Strobe):** Bu sinyal aşağı düştüğü an (t1), yonga "Tamam, şu an hatlarda duran 7 biti satır adresi olarak hafızama aldım" der.
 > * **CAS (Column Address Strobe):** Hatlardaki veri "Column Address" (Sütun Adresi) ile değiştirildikten sonra bu sinyal aşağı düşer (t3). Yonga şimdi de sütun adresini kabul eder.
 
+---
+<img width="616" height="933" alt="resim" src="https://github.com/user-attachments/assets/7f76d510-b1ac-4362-b5e0-8e32977adbb3" />
+
 > [!WARNING]
 > ### (A) Şeması: Multiplexing Yok (ROM veya SRAM)
 > Burada işlemci (CPU), belleğe (ROM veya statik RAM) direkt bağlıdır.
@@ -151,6 +154,10 @@ Normalde bellekteki bir veriye ulaşmak için bir adres göndermen gerekir. Bell
 >   * Sistem tamamen durmaz; tazeleme ve veri işleme sırayla, karma şekilde yapılır.
 >   * Modern sistemlerde akıcılığı bozmadığı için bu mod tercih edilir.
 
+---
+<img width="1059" height="258" alt="resim" src="https://github.com/user-attachments/assets/3de940de-38a9-417c-895c-5a5684c95ee0" />
+
+
 > [!IMPORTANT]
 > ### Tazeleme Sinyal Analizi
 > * **Sinyal Durumu:** Tazeleme işlemi sırasında sadece RAS (Satır Adres Seçici) sinyali aktif edilir.
@@ -164,6 +171,8 @@ Normalde bellekteki bir veriye ulaşmak için bir adres göndermen gerekir. Bell
 
 ## 📏 Bellek Genişletme (Memory Expansion)
 
+<img width="489" height="560" alt="resim" src="https://github.com/user-attachments/assets/2b21e44a-ceae-4930-bea8-6feb43f7500d" />
+
 > [!TIP]
 > ### 1. Word Size Expanding (Bit Genişletme)
 > * **Temel Amaç:** Elimizdeki düşük bit genişliğine sahip RAM modüllerini paralel bağlayarak, işlemcinin ihtiyacı olan daha geniş veri yolunu (Data Bus) oluşturmaktır.
@@ -174,6 +183,9 @@ Normalde bellekteki bir veriye ulaşmak için bir adres göndermen gerekir. Bell
 >   * **RAM-0:** Verinin üst 4 bitini (high-order bits, DB4 - DB7) saklar.
 >   * **RAM-1:** Verinin alt 4 bitini (low-order bits, DB0 - DB3) saklar.
 > * **Kontrol Sinyalleri:** Okuma/Yazma (R/W) ve Chip Select (CS) sinyalleri her iki modüle de aynı anda gider. Böylece işlemci "oku" dediğinde, her iki modül kendi 4 bitini gönderir ve veri hattında toplam 8 bitlik tam bir "word" (kelime) oluşur.
+
+---
+<img width="708" height="566" alt="resim" src="https://github.com/user-attachments/assets/ac217213-0210-4d3e-8f98-171eda952a30" />
 
 > [!WARNING]
 > ### 2. Capacity Expanding (Kapasite Artırma)
@@ -186,6 +198,9 @@ Normalde bellekteki bir veriye ulaşmak için bir adres göndermen gerekir. Bell
 > * **Chip Select (CS) ve NOT Kapısı:** Şemadaki en kritik nokta burasıdır. AB4 hattı doğrudan RAM-0'ın CS ucuna, bir NOT kapısı (invertör) üzerinden ise RAM-1'in CS ucuna gider.
 >   * Eğer AB4 = 0 ise: RAM-0 aktif olur, RAM-1 kapalı kalır. (00000 ile 01111 arası adresler).
 >   * Eğer AB4 = 1 ise: RAM-1 aktif olur, RAM-0 kapalı kalır. (10000 ile 11111 arası adresler).
+
+---
+<img width="838" height="627" alt="resim" src="https://github.com/user-attachments/assets/d6914133-faf8-4d0f-b67c-8f91d807fa67" />
 
 > [!NOTE]
 > ### 3. Combining Chips (Yonga Birleştirme)
